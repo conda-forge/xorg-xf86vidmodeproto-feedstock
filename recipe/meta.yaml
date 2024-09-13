@@ -17,7 +17,7 @@ source:
     - 0001-update-config-guess.patch
 
 build:
-  number: 1002
+  number: 1003
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -29,9 +29,14 @@ requirements:
     - pkg-config  # [not win]
     - posix  # [win]
     - gnuconfig  # [unix]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - make  # [unix]
+    - make
+    - {{ stdlib('c') }}             # [unix]
+    - {{ compiler('c') }}           # [unix]
+    - {{ compiler('m2w64_c') }}     # [win]
+    - autoconf                      # [unix]
+    - automake                      # [unix]
+    - gettext                       # [unix]
+    - libtool                       # [unix]
   host:
     - xorg-util-macros
 
@@ -50,3 +55,4 @@ extra:
   recipe-maintainers:
     - epruesse
     - pkgw
+    - ehfd
