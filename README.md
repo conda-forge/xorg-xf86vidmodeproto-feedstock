@@ -197,6 +197,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@ehfd](https://github.com/ehfd/)
 * [@epruesse](https://github.com/epruesse/)
 * [@pkgw](https://github.com/pkgw/)
 

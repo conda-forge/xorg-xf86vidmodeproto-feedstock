@@ -3,7 +3,7 @@
 {% set name = "xorg-" ~ xorg_name %}
 {% set version = "2.3.1" %}
 {% set sha256 = "45d9499aa7b73203fd6b3505b0259624afed5c16b941bd04fcf123e5de698770" %}
-{% set am_version = "1.15" %} # keep synchronized with build.sh
+{% set am_version = "1.16" %} # keep synchronized with build.sh
 
 package:
   name: {{ name|lower }}
@@ -17,23 +17,27 @@ source:
     - 0001-update-config-guess.patch
 
 build:
-  number: 1003
-  detect_binary_files_with_prefix: true
+  number: 1004
 
 requirements:
   build:
-    - m2-autoconf  # [win]
+    - m2-autoconf                  # [win]
     - m2-automake{{ am_version }}  # [win]
-    - m2-libtool  # [win]
-    - pkg-config
-    - gnuconfig  # [unix]
-    - m2-base  # [win]
-    - make  # [unix]
-    - m2-make  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ stdlib("c") }}          # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ stdlib("m2w64_c") }}    # [win]
+    - m2-libtool                   # [win]
+    - pkg-config                   # [unix]
+    - m2-pkg-config                # [win]
+    - gnuconfig                    # [unix]
+    - m2-base                      # [win]
+    - make                         # [unix]
+    - m2-make                      # [win]
+    - {{ stdlib("c") }}            # [unix]
+    - {{ compiler("c") }}          # [unix]
+    - {{ stdlib("m2w64_c") }}      # [win]
+    - {{ compiler("m2w64_c") }}    # [win]
+    - autoconf                     # [unix]
+    - automake                     # [unix]
+    - gettext                      # [unix]
+    - libtool                      # [unix]
   host:
     - xorg-util-macros
 
@@ -52,3 +56,4 @@ extra:
   recipe-maintainers:
     - epruesse
     - pkgw
+    - ehfd
