@@ -18,6 +18,9 @@ source:
 
 build:
   number: 1005
+  ignore_run_exports_from:                # [win and arm64]
+    - {{ m2w64_c_compiler }}_win-64       # [win and arm64]
+    - {{ m2w64_c_stdlib }}_win-64         # [win and arm64]
 
 requirements:
   build:
@@ -32,8 +35,11 @@ requirements:
     - m2-make                      # [win]
     - {{ stdlib("c") }}            # [unix]
     - {{ compiler("c") }}          # [unix]
-    - {{ stdlib("m2w64_c") }}      # [win]
-    - {{ compiler("m2w64_c") }}    # [win]
+    - {{ stdlib("m2w64_c") }}      # [win and x86_64]
+    - {{ compiler("m2w64_c") }}    # [win and x86_64]
+    # Headers only: on win-arm64 the x86-64 MinGW compiler only runs configure's checks.
+    - {{ m2w64_c_stdlib }}_win-64 {{ m2w64_c_stdlib_version }}.*        # [win and arm64]
+    - {{ m2w64_c_compiler }}_win-64 {{ m2w64_c_compiler_version }}.*    # [win and arm64]
     - autoconf                     # [unix]
     - automake                     # [unix]
     - gettext                      # [unix]
